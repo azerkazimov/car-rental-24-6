@@ -1,9 +1,14 @@
 import { layoutTheme } from "@/constant/theme";
+import useTheme from "@/hooks/use-theme";
+import { ThemeType } from "@/types/theme.type";
 import { router } from "expo-router";
 import { FlatList, Pressable, StatusBar, StyleSheet, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Home() {
+    const { colorScheme } = useTheme()
+    console.log(colorScheme);
+    const styles = getStyles(colorScheme);
     const data = [
         { id: 1, title: "Car 1", route: "/car-details" },
         { id: 2, title: "Moto", route: "/moto-details" },
@@ -30,10 +35,11 @@ export default function Home() {
     );
 }
 
-const styles = StyleSheet.create({
+const getStyles = (theme: ThemeType) => StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 10,
+        backgroundColor: theme === "dark" ? "red" : "white",
     },
     list: {
         flex: 1,
