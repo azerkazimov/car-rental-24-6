@@ -12,7 +12,8 @@ export const layoutTheme = {
             primary: "#171e29",
             white: "#FFFFFF",
             secondary: "#FF5C00",
-            gray: "#bababa",
+            gray: "#f1f1f0",
+            darkGray: "#101721",
             black: "#000000"
         }
     },

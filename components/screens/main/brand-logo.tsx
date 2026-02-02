@@ -1,14 +1,23 @@
 import { layoutTheme } from "@/constant/theme";
 import { carLogos } from "@/data/car-logo";
 import useTheme from "@/hooks/use-theme";
+import { useCarState } from "@/store/use-car.state";
 import { ThemeType } from "@/types/theme.type";
 import { Image } from "expo-image";
 import { router } from "expo-router";
+
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function BrandLogo() {
     const { colorScheme } = useTheme();
     const styles = getStyles(colorScheme);
+
+    const { brand, setBrand } = useCarState();
+
+    const handleBrandPress = (slug: string) => {
+        setBrand([slug])
+    }
+    console.log(brand);
 
 
     return (
@@ -22,7 +31,7 @@ export default function BrandLogo() {
             <FlatList
                 data={carLogos}
                 renderItem={({ item }) =>
-                    <TouchableOpacity style={styles.item}>
+                    <TouchableOpacity style={styles.item} onPress={() => handleBrandPress(item.slug)}>
                         <Image source={{ uri: item.image.source }} style={styles.brandImage} />
                     </TouchableOpacity>}
                 horizontal

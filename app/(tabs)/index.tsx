@@ -1,4 +1,5 @@
 import BrandLogo from "@/components/screens/main/brand-logo";
+import CarBrands from "@/components/screens/main/car-brands";
 import { layoutTheme } from "@/constant/theme";
 import useTheme from "@/hooks/use-theme";
 import { ThemeType } from "@/types/theme.type";
@@ -16,6 +17,7 @@ export default function Home() {
             <StatusBar barStyle="dark-content" />
             <Text style={styles.title}>Home with Tabs Layout</Text>
             <BrandLogo />
+            <CarBrands />
             
         </SafeAreaView>
     );
