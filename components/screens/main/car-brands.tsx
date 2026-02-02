@@ -9,7 +9,7 @@ export default function CarBrands() {
 
     return (
         <View style={styles.container}>
-
+            {/* FlatList of car brands ... */}
         </View>
     )
 }
