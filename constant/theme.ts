@@ -7,10 +7,17 @@ export const layoutTheme = {
             primary: "#000000",
             secondary: "#FF5C00",
             white: "#FFFFFF",
+        },
+        background: {
+            primary: "#171e29",
+            white: "#FFFFFF",
+            secondary: "#FF5C00",
+            gray: "#bababa",
+            black: "#000000"
         }
     },
-    fonts:{
-        inter:{
+    fonts: {
+        inter: {
             regular: "Inter-Regular",
             medium: "Inter-Medium",
             bold: "Inter-Bold",
@@ -21,7 +28,7 @@ export const layoutTheme = {
             semiBold: "Inter-SemiBold",
             thin: "Inter-Thin",
         },
-        montserrat:{
+        montserrat: {
             regular: "Montserrat-Regular",
             medium: "Montserrat-Medium",
             bold: "Montserrat-Bold",
