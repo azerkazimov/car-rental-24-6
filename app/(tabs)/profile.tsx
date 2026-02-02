@@ -3,6 +3,7 @@ import useTheme from "@/hooks/use-theme";
 import { ThemeType } from "@/types/theme.type";
 import { StatusBar, StyleSheet, Switch, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 export default function Profile() {
   const { colorScheme, toggleTheme } = useTheme()
   const styles = getStyles(colorScheme)
@@ -21,7 +22,7 @@ export default function Profile() {
           value={colorScheme === "dark"}
           onValueChange={handleToggleTheme}
           trackColor={{ true: "white", false: "black" }}
-          thumbColor={colorScheme === "dark" ? "gray" : "green"}
+          thumbColor={colorScheme === "dark" ? layoutTheme.colors.secondary : layoutTheme.colors.white}
         />
       </View>
     </SafeAreaView>
@@ -32,7 +33,7 @@ export default function Profile() {
 const getStyles = (theme: ThemeType) => StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: theme === "dark" ? "black" : "white",
+    backgroundColor: theme === "dark" ? layoutTheme.colors.primary : layoutTheme.colors.white,
   },
   header: {
     flex: 1,

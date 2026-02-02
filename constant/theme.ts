@@ -1,5 +1,14 @@
 export const layoutTheme = {
-    colors: {},
+    colors: {
+        primary: "#171e29",
+        white: "#FFFFFF",
+        secondary: "#FF5C00",
+        text: {
+            primary: "#000000",
+            secondary: "#FF5C00",
+            white: "#FFFFFF",
+        }
+    },
     fonts:{
         inter:{
             regular: "Inter-Regular",
