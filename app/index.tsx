@@ -1,15 +1,28 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ImageBackground } from "expo-image";
 import { Redirect, router } from "expo-router";
+import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
 
 export default function Index() {
   const width = useWindowDimensions().width;
-  const isAuthenticated = false;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const checkAuthenticated = async () => {
+    const isAuthenticated = await AsyncStorage.getItem("isAuthenticated");
+    if (!isAuthenticated) {
+      setIsAuthenticated(false);
+    } else if (isAuthenticated === "true") {
+      setIsAuthenticated(true);
+    }
+  }
+
+  useEffect(() => {
+    checkAuthenticated();
+  }, [])
 
   return (
-    isAuthenticated ? (
-      <Redirect href="/(tabs)" />
-    ) : (
+    !isAuthenticated ? (
       <View style={styles.container}>
         <ImageBackground
           source={require("../assets/images/audi.jpg")}
@@ -19,12 +32,14 @@ export default function Index() {
             <Text style={{ ...styles.title, width: width - 108 }}>Find and rent car in easy steps.</Text>
 
             {/* Let's Go Button */}
-            <Pressable style={styles.button} onPress={()=> router.push("/(tabs)")}>
+            <Pressable style={styles.button} onPress={() => router.push("/signin")}>
               <Text style={{ color: "white", fontSize: 18, fontWeight: "bold", textAlign: "center" }}>{`Let's Go`}</Text>
             </Pressable>
           </View>
         </ImageBackground>
       </View>
+    ) : (
+      <Redirect href="/(tabs)" />
     )
   );
 }

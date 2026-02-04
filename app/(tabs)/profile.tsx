@@ -1,7 +1,9 @@
 import { layoutTheme } from "@/constant/theme";
 import useTheme from "@/hooks/use-theme";
 import { ThemeType } from "@/types/theme.type";
-import { StatusBar, StyleSheet, Switch, Text, View } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { router } from "expo-router";
+import { StatusBar, StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Profile() {
@@ -12,10 +14,22 @@ export default function Profile() {
     toggleTheme(colorScheme === "dark" ? "light" : "dark")
   }
 
+  const handleLogout = async () => {
+    await AsyncStorage.removeItem("isAuthenticated");
+    router.replace("/");
+  }
+
   return (
     <>
     <StatusBar barStyle={colorScheme === "dark" ? "light-content" : "dark-content"} />
     <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+
+      <Text style={styles.title}>Profile</Text>
+      <TouchableOpacity onPress={handleLogout}>
+        <Text style={styles.logoutButtonText}>Logout</Text>
+      </TouchableOpacity>
+      </View>
       <View style={styles.settings}>
         <Text style={styles.title}>Theme</Text>
         <Switch
@@ -36,7 +50,15 @@ const getStyles = (theme: ThemeType) => StyleSheet.create({
     backgroundColor: theme === "dark" ? layoutTheme.colors.primary : layoutTheme.colors.white,
   },
   header: {
-    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    padding: 16,
+  },
+  logoutButtonText:{
+
+    fontFamily: layoutTheme.fonts.inter.regular,
+    color: layoutTheme.colors.secondary,
   },
   settings: {
     width: "100%",
