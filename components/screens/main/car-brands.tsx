@@ -44,7 +44,7 @@ export default function CarBrands() {
             <FlatList
                 data={getCarBySlug()}
                 renderItem={({ item }) =>
-                    <TouchableOpacity style={styles.item}>
+                    <TouchableOpacity style={styles.item} onPress={() => router.push(`/car/${item.id}/page`)}>
                         <Image source={{ uri: item.image }} style={styles.brandImage} />
                         <Text style={styles.brandName}>{item.brand}</Text>
                         <Text style={styles.modelName}>{item.model}</Text>
