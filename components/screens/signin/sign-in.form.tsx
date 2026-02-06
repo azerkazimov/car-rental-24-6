@@ -7,7 +7,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { signInSchema, SignInSchema } from "./sign-in.schema";
 
 
@@ -26,8 +26,21 @@ export default function SignInForm() {
 
     const onSubmit = async (data: SignInSchema) => {
         try {
-            await AsyncStorage.setItem("isAuthenticated", "true");
-            await AsyncStorage.setItem("user", JSON.stringify(data));
+            const user = await AsyncStorage.getItem("user");
+            if (!user) {
+                Alert.alert("Error", "User not found please sign up first");
+                return
+            }
+
+            const userData = JSON.parse(user);
+
+            if (userData.email !== data.email || userData.password !== data.password) {
+                Alert.alert("Error", "Invalid email or password");
+                return
+            } else {
+                await AsyncStorage.setItem("isAuthenticated", "true");
+            }
+
             router.push("/(tabs)");
         } catch (error) {
             console.error(error);

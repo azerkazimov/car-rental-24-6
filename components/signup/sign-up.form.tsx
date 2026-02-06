@@ -7,7 +7,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router } from "expo-router";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { signUpSchema, SignUpSchema } from "./sign-up.schema";
 
 
 
@@ -16,7 +17,25 @@ export default function SignUpForm() {
     const styles = getStyles(colorScheme);
     const [showPassword, setShowPassword] = useState(false);
 
-    const { control, handleSubmit, formState: { errors } } = useForm()
+    const { control, handleSubmit, formState: { errors } } = useForm<SignUpSchema>({
+        resolver: zodResolver(signUpSchema),
+        defaultValues: {
+            name: "",
+            email: "",
+            password: "",
+            confirmPassword: "",
+        },
+    })
+
+    const onSubmit = async (data: SignUpSchema) => {
+        try {
+            await AsyncStorage.setItem("user", JSON.stringify(data));
+            router.push("/signin");
+        } catch (error) {
+            console.error(error);
+            Alert.alert("Error", "Failed to sign up");
+        }
+    }
 
     return (
         <View style={styles.container}>
@@ -28,7 +47,7 @@ export default function SignUpForm() {
                     <Ionicons name="person-outline" size={24} color="#666" style={styles.inputIcon} />
                     <Controller
                         control={control}
-                        name="username"
+                        name="name"
                         render={({ field: { onChange, value } }) => (
                             <TextInput
                                 style={styles.input}
@@ -41,7 +60,7 @@ export default function SignUpForm() {
                         )}
                     />
                 </View>
-                {/* {errors.username && <Text style={styles.errorText}>{errors.username.message}</Text>} */}
+                {errors.name && <Text style={styles.errorText}>{errors.name.message}</Text>}
 
                 {/*  Email Section */}
                 <Text style={styles.label}>Email</Text>
@@ -62,7 +81,7 @@ export default function SignUpForm() {
                         )}
                     />
                 </View>
-                {/* {errors.email && <Text style={styles.errorText}>{errors.email.message}</Text>} */}
+                {errors.email && <Text style={styles.errorText}>{errors.email.message}</Text>}
 
                 {/* Password Section */}
                 <Text style={styles.label}>Password</Text>
@@ -94,7 +113,7 @@ export default function SignUpForm() {
                         />
                     </TouchableOpacity>
                 </View>
-                {/* {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>} */}
+                {errors.password && <Text style={styles.errorText}>{errors.password.message}</Text>}
             
                 {/* Confirm Password Section */}
                 <Text style={styles.label}>Confirm Password</Text>
@@ -126,7 +145,7 @@ export default function SignUpForm() {
                         />
                     </TouchableOpacity>
                 </View>
-                {/* {errors.confirmPassword && <Text style={styles.errorText}>{errors.confirmPassword.message}</Text>} */}
+                {errors.confirmPassword && <Text style={styles.errorText}>{errors.confirmPassword.message}</Text>}
             
             </View>
 
@@ -134,7 +153,7 @@ export default function SignUpForm() {
                 {/* Sign In Button */}
                 <TouchableOpacity
                     style={styles.signInButton}
-                    onPress={() => {}}
+                    onPress={handleSubmit(onSubmit)}
                 >
                     <Text style={styles.signInButtonText}>SIGN IN</Text>
                     <Ionicons name="arrow-forward" size={24} color="#FFF" />
