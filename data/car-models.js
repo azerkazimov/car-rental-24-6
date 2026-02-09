@@ -70,6 +70,12 @@ export const carModels = [
       "fuelType": "Petrol",
       "pricePerDay": 150,
       "image": "https://mystrongad.com/MWB_MotorwerksBMW/Digital/3%20Series/2024/2024-BMW-3-Series-Gray.webp",
+      "images": [
+        "https://mystrongad.com/MWB_MotorwerksBMW/Digital/3%20Series/2024/2024-BMW-3-Series-Gray.webp",
+        "https://bmw.scene7.com/is/image/BMW/g20_ice_ext_kidney?wid=2560&hei=2560",
+        "https://bmw.scene7.com/is/image/BMW/g20_ice_ext_m-sport-package?wid=2560&hei=2560",
+        "https://mystrongad.com/MWB_MotorwerksBMW/Digital/3%20Series/2024/2024-BMW-3-Series-Gray.webp",
+      ],
       "features": ["Sport Package", "Navigation", "Parking Sensors", "Keyless Entry"]
     },
     {
@@ -84,6 +90,11 @@ export const carModels = [
       "fuelType": "Diesel",
       "pricePerDay": 200,
       "image": "https://alcf.s3.us-west-1.amazonaws.com/_custom/2024/bmw/x5/2024%20bmw%20x5%20m%20competition.png",
+      images: [
+        "https://alcf.s3.us-west-1.amazonaws.com/_custom/2024/bmw/x5/2024%20bmw%20x5%20m%20competition.png",
+        "https://bmw.scene7.com/is/image/BMW/g20_ice_ext_kidney?wid=2560&hei=2560",
+        "https://bmw.scene7.com/is/image/BMW/g20_ice_ext_m-sport-package?wid=2560&hei=2560",
+        ],
       "features": ["Third Row Seats", "Panoramic Roof", "All-Wheel Drive", "Harman Kardon Audio"]
     },
     {

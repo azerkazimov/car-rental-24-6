@@ -10,5 +10,6 @@ export type CarModel = {
     fuelType: string;
     pricePerDay: number;
     image: string;
+    images?: string[] | null;
     features: string[];
 }

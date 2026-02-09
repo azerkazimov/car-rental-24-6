@@ -1,8 +1,10 @@
+import Button from "@/components/ui/button";
+import { layoutTheme } from "@/constant/theme";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ImageBackground } from "expo-image";
 import { Redirect, router } from "expo-router";
 import { useEffect, useState } from "react";
-import { Pressable, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { StyleSheet, Text, useWindowDimensions, View } from "react-native";
 
 export default function Index() {
   const width = useWindowDimensions().width;
@@ -32,9 +34,9 @@ export default function Index() {
             <Text style={{ ...styles.title, width: width - 108 }}>Find and rent car in easy steps.</Text>
 
             {/* Let's Go Button */}
-            <Pressable style={styles.button} onPress={() => router.push("/signin")}>
-              <Text style={{ color: "white", fontSize: 18, fontWeight: "bold", textAlign: "center" }}>{`Let's Go`}</Text>
-            </Pressable>
+            <Button onPress={() => router.push("/signin")}>
+              <Text style={styles.buttonText}>{`Let's Go`}</Text>
+            </Button>
           </View>
         </ImageBackground>
       </View>
@@ -62,12 +64,9 @@ const styles = StyleSheet.create({
     marginRight: 108,
     textAlign: "center"
   },
-  button: {
-    backgroundColor: "#FF5C00",
-    maxWidth: 324,
-    width: "100%",
-    padding: 16,
-    borderRadius: 16,
-    justifyContent: "center",
-  }
+  buttonText: {
+    color: layoutTheme.colors.text.white,
+    fontSize: 18,
+    fontFamily: layoutTheme.fonts.inter.bold,
+  },
 });

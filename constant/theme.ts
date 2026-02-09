@@ -3,6 +3,7 @@ export const layoutTheme = {
         primary: "#171e29",
         white: "#FFFFFF",
         secondary: "#FF5C00",
+        gray: "#3a3a3a",
         text: {
             primary: "#000000",
             secondary: "#FF5C00",

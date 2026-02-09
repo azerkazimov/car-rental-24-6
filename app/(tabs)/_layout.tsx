@@ -39,6 +39,18 @@ export default function TabsLayout() {
                 href: null,
             }}
             />
+            <Tabs.Screen name="settings" 
+            options={{
+                title: "",
+                href: null,
+            }}
+            />
+            <Tabs.Screen name="profile/personal-information" 
+            options={{
+                title: "",
+                href: null,
+            }}
+            />
         </Tabs >
     )
 }

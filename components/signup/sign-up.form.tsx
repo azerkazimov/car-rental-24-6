@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Alert, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { signUpSchema, SignUpSchema } from "./sign-up.schema";
+import Button from "../ui/button";
 
 
 
@@ -151,13 +152,12 @@ export default function SignUpForm() {
 
             <View style={styles.buttonContainer}>
                 {/* Sign In Button */}
-                <TouchableOpacity
-                    style={styles.signInButton}
+                <Button
                     onPress={handleSubmit(onSubmit)}
                 >
-                    <Text style={styles.signInButtonText}>SIGN IN</Text>
+                    <Text style={styles.signInButtonText}>SIGN UP</Text>
                     <Ionicons name="arrow-forward" size={24} color="#FFF" />
-                </TouchableOpacity>
+                </Button>
 
                 {/* Sign Up Link */}
                 <View style={styles.signUpContainer}>
@@ -213,16 +213,6 @@ const getStyles = (theme: ThemeType) => StyleSheet.create({
         color: "#FF3B30",
         fontSize: 12,
         marginTop: 4,
-    },
-    signInButton: {
-        backgroundColor: layoutTheme.colors.background.secondary,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        paddingVertical: 16,
-        borderRadius: 8,
-        marginTop: 40,
-        gap: 8,
     },
     signInButtonText: {
         color: "#FFF",
