@@ -36,7 +36,7 @@ export default function Profile() {
           <TouchableOpacity style={styles.item} onPress={() => router.push("/profile/personal-information")}>
             <Text style={styles.itemText}>Personal Information</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.item}>
+          <TouchableOpacity style={styles.item} onPress={() => router.push("/profile/driver-license")}>
             <Text style={styles.itemText}>Driver License</Text>
           </TouchableOpacity>
         </ScrollView>

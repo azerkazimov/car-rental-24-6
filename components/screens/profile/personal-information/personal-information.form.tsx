@@ -152,6 +152,7 @@ const getStyles = (theme: ThemeType) => StyleSheet.create({
 
     },
     formTitle: {
+        color: theme === "dark" ? layoutTheme.colors.white : layoutTheme.colors.primary,
         fontSize: 16,
         fontFamily: layoutTheme.fonts.inter.regular,
     },

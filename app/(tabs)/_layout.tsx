@@ -51,6 +51,12 @@ export default function TabsLayout() {
                 href: null,
             }}
             />
+            <Tabs.Screen name="profile/driver-license" 
+            options={{
+                title: "",
+                href: null,
+            }}
+            />
         </Tabs >
     )
 }
