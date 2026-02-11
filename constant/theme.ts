@@ -8,6 +8,7 @@ export const layoutTheme = {
             primary: "#000000",
             secondary: "#FF5C00",
             white: "#FFFFFF",
+            red: "#FF0000",
         },
         background: {
             primary: "#171e29",
