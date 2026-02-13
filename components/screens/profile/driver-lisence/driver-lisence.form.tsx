@@ -15,7 +15,7 @@ export default function DriverLisenceForm() {
     const { colorScheme } = useTheme()
     const styles = getStyles(colorScheme)
 
-    const { control, handleSubmit, watch, setValue, formState: { errors } } = useForm<DriverLicenseSchemaType>({
+    const { control, handleSubmit, setValue, formState: { errors } } = useForm<DriverLicenseSchemaType>({
         resolver: zodResolver(driverLicenseSchema),
         defaultValues: {
             driverLicenseNumber: "",
@@ -183,9 +183,9 @@ export default function DriverLisenceForm() {
                 <View style={styles.uploadSection}>
                     <Text style={styles.formTitle}>Upload Driver License Image</Text>
                     <TouchableOpacity style={styles.uploadButton} onPress={pickImage}>
-                        {licenseImage || watch("driverLicenseImage")
+                        {licenseImage
                             ? <Image
-                                source={{ uri: licenseImage || watch("driverLicenseImage") || "" }}
+                                source={{ uri: licenseImage }}
                                 style={styles.uploadedImage} />
                             : <Image
                                 source={require("@/assets/images/license.jpg")}
