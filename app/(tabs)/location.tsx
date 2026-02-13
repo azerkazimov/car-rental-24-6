@@ -119,6 +119,7 @@ export default function LocationTab() {
                     title="Your Location"
                     description="You are here"
                     pinColor="blue"
+                    // image={require("../../assets/images/marker.png")}
                 />
                 {searchedLocation && (
                     <Marker
