@@ -1,3 +1,4 @@
+import RangeCalendar from "@/components/screens/car/calendar";
 import { layoutTheme } from "@/constant/theme";
 import { carModels } from "@/data/car-models";
 import useTheme from "@/hooks/use-theme";
@@ -7,7 +8,6 @@ import { Image } from "expo-image";
 import { router, useLocalSearchParams } from "expo-router";
 import { useRef, useState } from "react";
 import { Dimensions, FlatList, NativeScrollEvent, NativeSyntheticEvent, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 
@@ -48,11 +48,16 @@ export default function CarModelPage() {
     );
 
     return (
-        <SafeAreaView style={styles.container}>
+        <View style={styles.container}>
             <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-                <Ionicons name="chevron-back" size={24} color="black" />
+                <Ionicons
+                    name="chevron-back"
+                    size={24}
+                    color={colorScheme === "dark"
+                        ? layoutTheme.colors.text.white
+                        : layoutTheme.colors.text.primary} />
             </TouchableOpacity>
-            
+
             <View style={styles.sliderWrapper}>
                 <FlatList
                     ref={flatListRef}
@@ -67,9 +72,10 @@ export default function CarModelPage() {
                 />
                 {renderDots()}
             </View>
-                
+
             <Text style={styles.title}>{car?.brand} {car?.model}</Text>
-        </SafeAreaView>
+            <RangeCalendar />
+        </View>
     );
 }
 
