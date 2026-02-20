@@ -1,7 +1,8 @@
-import RangeCalendar from "@/components/screens/car/calendar";
+import Button from "@/components/ui/button";
 import { layoutTheme } from "@/constant/theme";
 import { carModels } from "@/data/car-models";
 import useTheme from "@/hooks/use-theme";
+import { useAddBookingStore } from "@/store/use-add-booking";
 import { ThemeType } from "@/types/theme.type";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
@@ -18,8 +19,19 @@ export default function CarModelPage() {
     const flatListRef = useRef<FlatList>(null);
 
     const { id } = useLocalSearchParams();
+    const { setCarId } = useAddBookingStore();
+
+
 
     const car = carModels.find((car) => car.id === id);
+    if (!car) {
+        return <Text>Car not found</Text>;
+    }
+
+    const handleBooking = () => {
+        setCarId(id as string);
+        router.push(`/booking`);
+    }
 
     const handleScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         const scrollPosition = event.nativeEvent.contentOffset.x;
@@ -61,7 +73,7 @@ export default function CarModelPage() {
             <View style={styles.sliderWrapper}>
                 <FlatList
                     ref={flatListRef}
-                    data={car?.images || []}
+                    data={car.images || []}
                     renderItem={renderImageItem}
                     keyExtractor={(item, index) => index.toString()}
                     horizontal
@@ -73,8 +85,75 @@ export default function CarModelPage() {
                 {renderDots()}
             </View>
 
-            <Text style={styles.title}>{car?.brand} {car?.model}</Text>
-            <RangeCalendar />
+            <Text style={styles.title}>{car.brand} {car.model}</Text>
+
+            <View style={styles.carDetails}>
+                <Text style={styles.carDetailsTitle}>Car Info</Text>
+                <View style={styles.carDetailsContainer}>
+                    <View style={styles.carDetailsItem}>
+                        <Ionicons
+                            name="calendar-outline"
+                            size={24}
+                            color={colorScheme === "dark"
+                                ? layoutTheme.colors.text.white
+                                : layoutTheme.colors.text.primary}
+                        />
+                        <Text style={styles.carDetailsItemText}>{car.year}</Text>
+                    </View>
+                    <View style={styles.carDetailsItem}>
+                        <Ionicons
+                            name="battery-charging-outline"
+                            size={24}
+                            color={colorScheme === "dark"
+                                ? layoutTheme.colors.text.white
+                                : layoutTheme.colors.text.primary}
+                        />
+                        <Text style={styles.carDetailsItemText}>{car.fuelType}</Text>
+                    </View>
+                    <View style={styles.carDetailsItem}>
+                        <Ionicons
+                            name="cog-outline"
+                            size={24}
+                            color={colorScheme === "dark"
+                                ? layoutTheme.colors.text.white
+                                : layoutTheme.colors.text.primary}
+                        />
+                        <Text style={styles.carDetailsItemText}>{car.transmission}</Text>
+                    </View>
+                    <View style={styles.carDetailsItem}>
+                        <Ionicons
+                            name="car"
+                            size={24}
+                            color={colorScheme === "dark"
+                                ? layoutTheme.colors.text.white
+                                : layoutTheme.colors.text.primary}
+                        />
+                        <Text style={styles.carDetailsItemText}>{car.type}</Text>
+                    </View>
+                    <View style={styles.carDetailsItem}>
+                        <Ionicons
+                            name="bed-outline"
+                            size={24}
+                            color={colorScheme === "dark"
+                                ? layoutTheme.colors.text.white
+                                : layoutTheme.colors.text.primary}
+                        />
+                        <Text style={styles.carDetailsItemText}>Seats: {car.seats}</Text>
+                    </View>
+                </View>
+
+            </View>
+
+            <View style={styles.carFeatures}>
+                {car.features.map((feature) => (
+                    <View style={styles.carFeatureItem} key={feature}>
+                        <Text style={styles.carFeatureItemText}>{feature}</Text>
+                    </View>
+                ))}
+            </View>
+            <Button onPress={handleBooking} style={styles.button}>
+                <Text style={styles.buttonText}>Rent Now {car?.pricePerDay} $</Text>
+            </Button>
         </View>
     );
 }
@@ -84,6 +163,9 @@ const getStyles = (theme: ThemeType) => StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: theme === "dark" ? layoutTheme.colors.background.primary : layoutTheme.colors.background.white,
+        alignItems: "center",
+        paddingBottom: 32,
+
     },
     title: {
         fontSize: 20,
@@ -135,5 +217,63 @@ const getStyles = (theme: ThemeType) => StyleSheet.create({
         width: 12,
         height: 12,
         borderRadius: 6,
+    },
+    button: {
+        marginTop: 16,
+        width: "100%",
+    },
+    buttonText: {
+        color: layoutTheme.colors.text.white,
+        fontSize: 16,
+        fontFamily: layoutTheme.fonts.inter.bold,
+    },
+    carDetails: {
+        width: "100%",
+        paddingHorizontal: 16,
+    },
+    carDetailsContainer: {
+        flexDirection: "row",
+        flexWrap: "wrap",
+
+    },
+    carDetailsTitle: {
+        fontFamily: layoutTheme.fonts.inter.bold,
+        color: theme === "dark" ? layoutTheme.colors.text.white : layoutTheme.colors.text.primary,
+        fontSize: 24,
+        marginBottom: 8,
+    },
+    carDetailsItem: {
+        flexDirection: "row",
+        alignItems: "center",
+        gap: 8,
+        marginBottom: 8,
+        width: "45%",
+    },
+    carDetailsItemText: {
+        fontFamily: layoutTheme.fonts.inter.bold,
+        color: theme === "dark" ? layoutTheme.colors.text.white : layoutTheme.colors.text.primary,
+    },
+    carFeatures: {
+        marginTop: 32,
+        width: "100%",
+        paddingHorizontal: 16,
+        flexDirection: "row",
+        gap: 8,
+    },
+    carFeatureItem: {
+        borderWidth: 1,
+        borderColor: theme === "dark" ? layoutTheme.colors.text.white : layoutTheme.colors.text.primary,
+        borderRadius: 8,
+        padding: 8,
+        width: "33.33%",
+        height: 100,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    carFeatureItemText: {
+        fontFamily: layoutTheme.fonts.inter.bold,
+        color: theme === "dark" ? layoutTheme.colors.text.white : layoutTheme.colors.text.primary,
+        fontSize: 16,
+        textAlign: "center",
     },
 })

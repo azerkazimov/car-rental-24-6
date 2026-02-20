@@ -4,6 +4,7 @@ export const layoutTheme = {
         white: "#FFFFFF",
         secondary: "#FF5C00",
         gray: "#3a3a3a",
+        lightGray: "#f1f1f0",
         text: {
             primary: "#000000",
             secondary: "#FF5C00",
