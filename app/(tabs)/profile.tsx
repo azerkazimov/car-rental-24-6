@@ -39,6 +39,9 @@ export default function Profile() {
           <TouchableOpacity style={styles.item} onPress={() => router.push("/profile/driver-license")}>
             <Text style={styles.itemText}>Driver License</Text>
           </TouchableOpacity>
+          <TouchableOpacity style={styles.item} onPress={() => router.push("/profile/card-information")}>
+            <Text style={styles.itemText}>Card Information</Text>
+          </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     </>

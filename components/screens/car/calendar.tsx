@@ -26,14 +26,20 @@ export default function RangeCalendar() {
         if (!startDate) {
             setStartDate(selectedDate);
             setEndDate(null);
+            setStartDateStore(selectedDate);
+            setEndDateStore("");
             return;
         }
 
         if (startDate && !endDate) {
             if (selectedDate < startDate) {
                 setStartDate(selectedDate);
+                setEndDate(null);
+                setStartDateStore(selectedDate);
+                setEndDateStore("");
             } else {
                 setEndDate(selectedDate);
+                setEndDateStore(selectedDate);
             }
             return
         }
@@ -41,6 +47,8 @@ export default function RangeCalendar() {
         // Əgər start date və end date varsa, start date-i yenilə
         setStartDate(selectedDate);
         setEndDate(null);
+        setStartDateStore(selectedDate);
+        setEndDateStore("");
     }
 
     const getMarkedDates = () => {
@@ -77,14 +85,11 @@ export default function RangeCalendar() {
                 // Əgər bu gün başlanğıcdırsa
                 if (dateString === startDate) {
                     marked[dateString].startingDay = true;
-                    setStartDateStore(dateString);
-
                 }
 
                 // Əgər bu gün sondursa
                 if (dateString === endDate) {
                     marked[dateString].endingDay = true;
-                    setEndDateStore(dateString);
                 }
 
                 // Tarixi 1 gün artırırıq

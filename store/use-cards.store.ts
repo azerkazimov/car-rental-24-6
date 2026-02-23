@@ -9,11 +9,11 @@ interface Card {
 }
 
 interface AddCardState {
+    cards: Card[];
     cardNumber: string;
     cardHolderName: string;
     cardExpirationDate: string;
     cardCvv: string;
-    cards: Card[];
     addCard: (card: Card) => void;
     setCardNumber: (cardNumber: string) => void;
     setCardHolderName: (cardHolderName: string) => void;
@@ -22,7 +22,7 @@ interface AddCardState {
 }
 
 
-export const useAddCardStore = create<AddCardState>((set) => ({
+export const useCardStore = create<AddCardState>((set) => ({
     cards: [],
     cardNumber: "",
     cardHolderName: "",

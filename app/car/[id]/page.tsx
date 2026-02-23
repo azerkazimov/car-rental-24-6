@@ -219,7 +219,8 @@ const getStyles = (theme: ThemeType) => StyleSheet.create({
         borderRadius: 6,
     },
     button: {
-        marginTop: 16,
+        position: "absolute",
+        bottom: 40,
         width: "100%",
     },
     buttonText: {

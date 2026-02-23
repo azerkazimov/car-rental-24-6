@@ -9,59 +9,71 @@ export default function TabsLayout() {
     const { colorScheme } = useTheme();
     const styles = getStyles(colorScheme);
     return (
-        <Tabs screenOptions={{ headerShown: false, tabBarStyle:  styles.tabBar}} >
+        <Tabs screenOptions={{ headerShown: false, tabBarStyle: styles.tabBar }} >
             <Tabs.Screen name="index" options={{
                 title: "",
                 tabBarIcon: ({ color, size }) => <Ionicons name="home" color={color} size={size} />
             }}
             />
-            <Tabs.Screen name="favorite" 
-            options={{
-                title: "",
-                tabBarIcon: ({ color, size }) => <Ionicons name="heart" color={color} size={size} />
-            }}
+            <Tabs.Screen name="favorite"
+                options={{
+                    title: "",
+                    tabBarIcon: ({ color, size }) => <Ionicons name="heart" color={color} size={size} />
+                }}
             />
-            <Tabs.Screen name="notifications" 
-            options={{
-                title: "",
-                tabBarIcon: ({ color, size }) => <Ionicons name="notifications" color={color} size={size} />
-            }}
+            <Tabs.Screen name="notifications"
+                options={{
+                    title: "",
+                    tabBarIcon: ({ color, size }) => <Ionicons name="notifications" color={color} size={size} />
+                }}
             />
-            <Tabs.Screen name="profile" 
-            options={{
-                title: "",
-                tabBarIcon: ({ color, size }) => <Ionicons name="person" color={color} size={size} />
-            }}
+            <Tabs.Screen name="profile"
+                options={{
+                    title: "",
+                    tabBarIcon: ({ color, size }) => <Ionicons name="person" color={color} size={size} />
+                }}
             />
-            <Tabs.Screen name="car-list" 
-            options={{
-                title: "",
-                href: null,
-            }}
+            <Tabs.Screen name="car-list"
+                options={{
+                    title: "",
+                    href: null,
+                }}
             />
-            <Tabs.Screen name="settings" 
-            options={{
-                title: "",
-                href: null,
-            }}
+            <Tabs.Screen name="settings"
+                options={{
+                    title: "",
+                    href: null,
+                }}
             />
-            <Tabs.Screen name="profile/personal-information" 
-            options={{
-                title: "",
-                href: null,
-            }}
+            <Tabs.Screen name="profile/personal-information"
+                options={{
+                    title: "",
+                    href: null,
+                }}
             />
-            <Tabs.Screen name="profile/driver-license" 
-            options={{
-                title: "",
-                href: null,
-            }}
+            <Tabs.Screen name="profile/driver-license"
+                options={{
+                    title: "",
+                    href: null,
+                }}
             />
-            <Tabs.Screen name="location" 
-            options={{
-                title: "",
-                tabBarIcon: ({ color, size }) => <Ionicons name="location" color={color} size={size} />
-            }}
+            <Tabs.Screen name="location"
+                options={{
+                    title: "",
+                    tabBarIcon: ({ color, size }) => <Ionicons name="location" color={color} size={size} />
+                }}
+            />
+            <Tabs.Screen name="profile/card-information"
+                options={{
+                    title: "",
+                    href: null,
+                }}
+            />
+            <Tabs.Screen name="profile/add-card"
+                options={{
+                    title: "",
+                    href: null,
+                }}
             />
         </Tabs >
     )
