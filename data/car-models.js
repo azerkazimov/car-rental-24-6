@@ -544,7 +544,7 @@ export const carModels = [
       "transmission": "Automatic",
       "fuelType": "Petrol",
       "pricePerDay": 160,
-      "image": "https://www.mbusa.com/content/dam/mb-nafta/us/myco/my24/c-class/sedan/all-vehicles/2024-C-SEDAN-AVP-DR.jpg",
+      "image": "https://mystrongad.com/MBR_MerecedesBenzofRoanoke/Interactive/C-Class/2024/2024-Mercedes-Benz-C-Class-Sedan-White.webp",
       "features": ["AMG Line", "MBUX System", "Burmester Audio", "Advanced Driver Assist"]
     },
     {
@@ -558,7 +558,7 @@ export const carModels = [
       "transmission": "Automatic",
       "fuelType": "Hybrid",
       "pricePerDay": 200,
-      "image": "https://www.mbusa.com/content/dam/mb-nafta/us/myco/my24/e-class/sedan/all-vehicles/2024-E-SEDAN-AVP-DR.jpg",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1wsiD-tvH9H3QJjXNFc1AYO9qd1jBiSOrXA&s",
       "features": ["Hybrid Technology", "Executive Package", "Air Suspension", "Digital Cockpit"]
     },
     {
@@ -572,7 +572,7 @@ export const carModels = [
       "transmission": "Automatic",
       "fuelType": "Diesel",
       "pricePerDay": 220,
-      "image": "https://www.mbusa.com/content/dam/mb-nafta/us/myco/my24/gle/suv/all-vehicles/2024-GLE-SUV-AVP-DR.jpg",
+      "image": "https://images.hgmsites.net/lrg/2024-mercedes-benz-gle-class-amg-gle-53-4matic-coupe-angular-front-exterior-view_100903296_l.webp",
       "features": ["Third Row Option", "4MATIC", "E-Active Body Control", "Premium Package"]
     },
     {
@@ -586,7 +586,7 @@ export const carModels = [
       "transmission": "Automatic",
       "fuelType": "Petrol",
       "pricePerDay": 350,
-      "image": "https://www.mbusa.com/content/dam/mb-nafta/us/myco/my24/s-class/sedan/all-vehicles/2024-S-SEDAN-AVP-DR.jpg",
+      "image": "https://mkt-vehicleimages-prd.autotradercdn.ca/photos/chrome/Expanded/White/2024MBCCR0021/2024MBCCR002101.jpg",
       "features": ["Executive Rear Seats", "Maybach Option", "Burmester 4D Audio", "Luxury Package"]
     },
   
