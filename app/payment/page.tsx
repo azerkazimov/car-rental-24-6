@@ -4,8 +4,10 @@ import Gradient from "@/components/ui/gradient";
 import { layoutTheme } from "@/constant/theme";
 import { carModels } from "@/data/car-models";
 import useTheme from "@/hooks/use-theme";
+import { sendPaymentConfirmationNotification } from "@/services/push-service";
 import { useAddBookingStore } from "@/store/use-add-booking";
 import { ThemeType } from "@/types/theme.type";
+import { router } from "expo-router";
 import { StyleSheet, Text, View } from "react-native";
 
 
@@ -24,6 +26,18 @@ export default function PaymentPage() {
 
     const totalPrice = car.pricePerDay * (new Date(endDate).getDay() - new Date(startDate).getDay());
     const totalDays = new Date(endDate).getDay() - new Date(startDate).getDay();
+
+    const handlePay = ()=>{
+        sendPaymentConfirmationNotification({
+            amount: totalPrice,
+            car: car.brand + " " + car.model,
+            totalDays: totalDays,
+            totalPrice: totalPrice,
+            cardNumber: "1234567890",
+            paymentId: "1234567890",
+        })
+        router.push("/confirmation-page");
+    }
 
     return (
         <Gradient>
@@ -52,7 +66,7 @@ export default function PaymentPage() {
 
                         <Text>Price: {car.pricePerDay} $</Text>
                     </View>
-                    <Button onPress={() => { }} style={styles.button}>
+                    <Button onPress={handlePay} style={styles.button}>
                         <Text style={styles.buttonText}>Pay | for {totalDays} days | {totalPrice} $</Text>
                     </Button>
 
